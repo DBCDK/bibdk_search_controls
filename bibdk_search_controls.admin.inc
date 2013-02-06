@@ -48,8 +48,8 @@ function _bibdk_search_controls_admin_form($controls) {
 
   $form['bibdk_search_controls'] = array(
     '#type'         => 'fieldset',
-    '#title'        => t('Search controls'),
-    '#description'  => t('Edit or add search controls.'),
+    '#title'        => t('Search controls', array(), array('context' => 'bibdk_search_controls')),
+    '#description'  => t('Edit or add search controls.', array(), array('context' => 'bibdk_search_controls')),
     '#tree'         => TRUE,
     '#theme'        => 'bibdk_search_controls-admin-form',
   );
@@ -57,24 +57,24 @@ function _bibdk_search_controls_admin_form($controls) {
   if ( !empty($controls) ) {
     foreach ($controls as $key => $value) {
       $form['bibdk_search_controls'][$key]['title'] = array(
-        '#markup'         => t($value['title']),
+        '#markup'         => t($value['title'], array(), array('context' => 'bibdk_search_controls')),
       );
       $form['bibdk_search_controls'][$key]['edit'] = array(
         '#type'           => 'link',
-        '#title'          => t('edit'),
+        '#title'          => t('edit', array(), array('context' => 'bibdk_search_controls')),
         '#title_display'  => 'invisible',
         '#href'           =>  'admin/config/search/bibdk_search_controls/' . $key . '/edit',
-        '#options'        => array('attributes' => array('title' => t('Edit.'))),
+        '#options'        => array('attributes' => array('title' => t('Edit.', array(), array('context' => 'bibdk_search_controls')))),
       );
       $form['bibdk_search_controls'][$key]['delete'] = array(
         '#type'           => 'link',
-        '#title'          => t('delete'),
+        '#title'          => t('delete', array(), array('context' => 'bibdk_search_controls')),
         '#title_display'  => 'invisible',
         '#href'           =>  'admin/config/search/bibdk_search_controls/' . $key . '/delete',
-        '#options'        => array('attributes' => array('title' => t('Delete.'))),
+        '#options'        => array('attributes' => array('title' => t('Delete.', array(), array('context' => 'bibdk_search_controls')))),
       );
       $form['bibdk_search_controls'][$key]['description'] = array(
-        '#markup'         => t($value['description']),
+        '#markup'         => t($value['description'], array(), array('context' => 'bibdk_search_controls')),
       );
     }
   }
@@ -82,7 +82,7 @@ function _bibdk_search_controls_admin_form($controls) {
   $form['actions'] = array('#type' => 'actions');
   $form['actions']['add'] = array(
     '#type' => 'submit',
-    '#value' => t('Add Control'),
+    '#value' => t('Add Control', array(), array('context' => 'bibdk_search_controls')),
   );
   return $form;
 }
@@ -138,7 +138,7 @@ function bibdk_search_controls_edit_submit($form, &$form_state) {
     uasort($control['values'], '_bibdk_search_controls_values_cmp');
   }
 
-  if ( $form_state['values']['op'] == t('Add value') ) {
+  if ( $form_state['values']['op'] == t('Add value', array(), array('context' => 'bibdk_search_controls')) ) {
     $control['values'][] = array('id'=>'','label'=>'','value'=>'','default'=>'','sort'=>'',);
   }
 
@@ -147,10 +147,10 @@ function bibdk_search_controls_edit_submit($form, &$form_state) {
   $controls[$id] = $control;
 
   if ( $form_state['values']['state'] == 'insert' ) {
-    drupal_set_message(t('The control "@page" have been created.',array('@page'=>$control['title'])));
+    drupal_set_message(t('The control "@page" have been created.', array('@page'=>$control['title']), array('context' => 'bibdk_search_controls')));
   }
   else {
-    drupal_set_message(t('The control have been updated.'));
+    drupal_set_message(t('The control have been updated.', array(), array('context' => 'bibdk_search_controls')));
   }
 
   variable_set('bibdk_search_controls', $controls);
@@ -170,7 +170,7 @@ function bibdk_search_controls_edit_validate($form, &$form_state) {
   $name = $form_state['values']['bibdk_search_control']['name'];
 
   if ( $form_state['values']['state'] == 'insert' &&  array_key_exists($name, $controls) ) {
-    form_set_error('', t('The name attribute must be unique.'));
+    form_set_error('', t('The name attribute must be unique.', array(), array('context' => 'bibdk_search_controls')));
   }
 
   if ( !empty($form_state['values']['bibdk_search_control_values']) ) {
@@ -181,7 +181,7 @@ function bibdk_search_controls_edit_validate($form, &$form_state) {
       }
     }
     if ( $count_defaults > 1 && $form_state['values']['bibdk_search_control']['type'] != 'checkboxes' ) {
-      drupal_set_message(t('There are too many default values. Only the last one will be used.'),'warning');
+      drupal_set_message(t('There are too many default values. Only the last one will be used.', array(), array('context' => 'bibdk_search_controls')),'warning');
     }
   }
   return $form;
@@ -211,7 +211,7 @@ function bibdk_search_controls_delete($form_id, $form_state, $id) {
   $form['#validate'][] = 'bibdk_search_controls_delete_validate';
   $form['#submit'][] = 'bibdk_search_controls_delete_submit';
 
-  return confirm_form($form, t("Are you sure you want to delete '@element'?", array('@element' => $title)), 'admin/config/search/bibdk_search_controls');
+  return confirm_form($form, t("Are you sure you want to delete '@element'?", array('@element' => $title), array('context' => 'bibdk_search_controls')), 'admin/config/search/bibdk_search_controls');
 }
 
 
@@ -236,7 +236,7 @@ function bibdk_search_controls_delete_submit($form, &$form_state) {
 
   variable_set('bibdk_search_controls', $controls);
 
-  drupal_set_message(t("'@element' deleted.", array('@element' => $form_state['values']['title'])));
+  drupal_set_message(t("'@element' deleted.", array('@element' => $form_state['values']['title']), array('context' => 'bibdk_search_controls')));
 
   $form_state['redirect'] = 'admin/config/search/bibdk_search_controls';
 
@@ -259,8 +259,8 @@ function _bibdk_search_controls_edit_form($element,$state) {
 
   $form['bibdk_search_control'] = array(
     '#type'         => 'fieldset',
-    '#title'        => t('Bibliotek.dk search controls'),
-    '#description'  => t('Edit search control configuration.'),
+    '#title'        => t('Bibliotek.dk search controls', array(), array('context' => 'bibdk_search_controls')),
+    '#description'  => t('Edit search control configuration.', array(), array('context' => 'bibdk_search_controls')),
     '#tree'         => TRUE,
     '#theme'        => 'bibdk_search_controls-edit-form',
   );
@@ -268,66 +268,66 @@ function _bibdk_search_controls_edit_form($element,$state) {
   $form['bibdk_search_control']['title'] = array(
     '#type'           => 'textfield',
     '#default_value'  => $element['title'],
-    '#title'          => t('Title'),
-    '#description'  => t('Administrative name for this control'),
+    '#title'          => t('Title', array(), array('context' => 'bibdk_search_controls')),
+    '#description'  => t('Administrative name for this control', array(), array('context' => 'bibdk_search_controls')),
     '#size'           => 36,
   );
 
   $form['bibdk_search_control']['type'] = array(
     '#type'           => 'select',
     '#options' => array(
-      'checkboxes' => t('Checkboxes'),
-      'radios' => t('Radios'),
-      'select' => t('Select'),
+      'checkboxes' => t('Checkboxes', array(), array('context' => 'bibdk_search_controls')),
+      'radios' => t('Radios', array(), array('context' => 'bibdk_search_controls')),
+      'select' => t('Dropdown', array(), array('context' => 'bibdk_search_controls')),
     ),
     '#default_value'  => $element['type'],
-    '#title'          => t('Element type'),
-    '#description'  => t('Type of control.'),
+    '#title'          => t('Element type', array(), array('context' => 'bibdk_search_controls')),
+    '#description'  => t('Type of control.', array(), array('context' => 'bibdk_search_controls')),
   );
 
   $form['bibdk_search_control']['label'] = array(
     '#type'           => 'textfield',
     '#default_value'  => $element['label'],
-    '#title'          => t('Element label'),
-    '#description'  => t('Label for this control as shown in the search form.'),
+    '#title'          => t('Element label', array(), array('context' => 'bibdk_search_controls')),
+    '#description'  => t('Label for this control as shown in the search form.', array(), array('context' => 'bibdk_search_controls')),
     '#size'           => 36,
   );
 
   $form['bibdk_search_control']['name'] = array(
     '#type'           => 'textfield',
     '#default_value'  => $element['name'],
-    '#title'          => t('Element name'),
-    '#description'  => t('Name attribute for this control.'),
+    '#title'          => t('Element name', array(), array('context' => 'bibdk_search_controls')),
+    '#description'  => t('Name attribute for this control.', array(), array('context' => 'bibdk_search_controls')),
     '#size'           => 36,
   );
 
   $form['bibdk_search_control']['description'] = array(
     '#type'           => 'textarea',
     '#default_value'  => $element['description'],
-    '#title'          => t('Description'),
-    '#description'  => t('Description for this control, or a short help text.'),
+    '#title'          => t('Description', array(), array('context' => 'bibdk_search_controls')),
+    '#description'  => t('Description for this control, or a short help text.', array(), array('context' => 'bibdk_search_controls')),
     '#size'           => 36,
   );
 
   $form['bibdk_search_control']['access_key'] = array(
     '#type'           => 'textfield',
     '#default_value'  => $element['access_key'],
-    '#title'          => t('AccessKey'),
+    '#title'          => t('AccessKey', array(), array('context' => 'bibdk_search_controls')),
     '#size'           => 2,
   );
 
   $form['bibdk_search_control']['tab_index'] = array(
     '#type'           => 'textfield',
     '#default_value'  => $element['tab_index'],
-    '#title'          => t('TabIndex'),
+    '#title'          => t('TabIndex', array(), array('context' => 'bibdk_search_controls')),
     '#size'           => 2,
   );
 
 
   $form['bibdk_search_control_values'] = array(
     '#type'         => 'fieldset',
-    '#title'        => t('Search controls : dropdown values'),
-    '#description'  => t('Order the values as you want them to be displayed.'),
+    '#title'        => t('Search controls : dropdown values', array(), array('context' => 'bibdk_search_controls')),
+    '#description'  => t('Order the values as you want them to be displayed.', array(), array('context' => 'bibdk_search_controls')),
     '#tree'         => TRUE,
     '#theme'        => 'bibdk_search_controls-values-form',
   );
@@ -340,32 +340,32 @@ function _bibdk_search_controls_edit_form($element,$state) {
       );
       $form['bibdk_search_control_values'][$key]['label'] = array(
         '#type'           => 'textfield',
-        '#title'          => t('Label'),
+        '#title'          => t('Label', array(), array('context' => 'bibdk_search_controls')),
         '#title_display'  => 'invisible',
         '#default_value'  => $value['label'],
       );
       $form['bibdk_search_control_values'][$key]['value'] = array(
         '#type'           => 'textfield',
-        '#title'          => t('Value'),
+        '#title'          => t('Value', array(), array('context' => 'bibdk_search_controls')),
         '#title_display'  => 'invisible',
         '#default_value'  => $value['value'],
       );
       $form['bibdk_search_control_values'][$key]['default'] = array(
         '#type'           => 'checkbox',
-        '#title'          => t('Default'),
+        '#title'          => t('Default', array(), array('context' => 'bibdk_search_controls')),
         '#title_display'  => 'invisible',
         '#default_value'  => $value['default'],
       );
       $form['bibdk_search_control_values'][$key]['delete'] = array(
         '#type'           => 'link',
-        '#title'          => t('delete'),
+        '#title'          => t('delete', array(), array('context' => 'bibdk_search_controls')),
         '#title_display'  => 'invisible',
         '#href'           =>  'admin/config/search/bibdk_search_controls/' . $element['name'] . '/delete_value/' . $key,
         '#options'        => array('attributes' => array('title' => t('Delete value.'))),
       );
       $form['bibdk_search_control_values'][$key]['sort'] = array(
         '#type'           => 'weight',
-        '#title'          => t('Weight'),
+        '#title'          => t('Weight', array(), array('context' => 'bibdk_search_controls')),
         '#title_display' => 'invisible',
         '#default_value'  => $value['sort'],
         '#attributes'     => array('class' => array('element-weight')),
@@ -421,7 +421,7 @@ function bibdk_search_controls_delete_value($form_id, $form_state, $id, $vid) {
   $form['#validate'][] = 'bibdk_search_controls_delete_value_validate';
   $form['#submit'][] = 'bibdk_search_controls_delete_value_submit';
 
-  return confirm_form($form, t("Are you sure you want to delete '@value' in '@title'?", array('@title' => $title, '@value' => $value)), 'admin/config/search/bibdk_search_controls');
+  return confirm_form($form, t("Are you sure you want to delete '@value' in '@title'?", array('@title' => $title, '@value' => $value), array('context' => 'bibdk_search_controls')), 'admin/config/search/bibdk_search_controls');
 }
 
 
@@ -447,7 +447,7 @@ function bibdk_search_controls_delete_value_submit($form, &$form_state) {
 
   variable_set('bibdk_search_controls', $controls);
 
-  drupal_set_message(t("'@value' in '@title' deleted.", array('@title' => $form_state['values']['title'], '@value' => $form_state['values']['value'])));
+  drupal_set_message(t("'@value' in '@title' deleted.", array('@title' => $form_state['values']['title'], '@value' => $form_state['values']['value']), array('context' => 'bibdk_search_controls')));
 
   $form_state['redirect'] = 'admin/config/search/bibdk_search_controls/' . $id . '/edit';
 

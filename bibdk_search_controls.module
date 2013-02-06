@@ -42,6 +42,7 @@ function bibdk_search_controls_menu() {
  */
 function bibdk_search_controls_form_search_block_form_alter(&$form, &$form_state, $form_id) {
   $controls = variable_get('bibdk_search_controls',array());
+  dpm(serialize($controls));
   foreach ( $controls as $key => $control ) {
     $name = $control['name'];
     $default_value = '';
