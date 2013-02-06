@@ -138,7 +138,7 @@ function bibdk_search_controls_edit_submit($form, &$form_state) {
     uasort($control['values'], '_bibdk_search_controls_values_cmp');
   }
 
-  if ( $form_state['values']['op'] == 'Add value' ) {
+  if ( $form_state['values']['op'] == t('Add value') ) {
     $control['values'][] = array('id'=>'','label'=>'','value'=>'','default'=>'','sort'=>'',);
   }
 
