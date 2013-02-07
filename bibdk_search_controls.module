@@ -243,7 +243,7 @@ function bibdk_search_controls_theme() {
 function _bibdk_search_controls_variable_get() {
   global $_bibdk_search_controls_unit_test_case;
 
-  if ( isset($unit_test_case) && $unit_test_case ) {
+  if ( isset($_bibdk_search_controls_unit_test_case) && $_bibdk_search_controls_unit_test_case ) {
     include_once('test/bibdk_search_controls_test.array_in.php');
     return _bibdk_search_controls_variable_create();
   }
