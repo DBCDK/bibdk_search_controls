@@ -9,7 +9,7 @@
  * General settings.
  */
 function bibdk_search_controls_admin() {
-  $controls = variable_get('bibdk_search_controls',array());
+  $controls = variable_get('bibdk_search_controls', array());
 
   $form = _bibdk_search_controls_admin_form($controls);
   $form['#submit'][] = 'bibdk_search_controls_admin_submit';
@@ -114,7 +114,7 @@ function bibdk_search_controls_edit($form, &$form_state, $id) {
     $elements['values'] = array();
   }
 
-  $form = _bibdk_search_controls_edit_form($elements,$state);
+  $form = _bibdk_search_controls_edit_form($elements, $state);
   $form['#submit'][] = 'bibdk_search_controls_edit_submit';
   return $form;
 }
@@ -139,7 +139,7 @@ function bibdk_search_controls_edit_submit($form, &$form_state) {
   }
 
   if ( $form_state['values']['op'] == t('Add value', array(), array('context' => 'bibdk_search_controls')) ) {
-    $control['values'][] = array('id'=>'','label'=>'','value'=>'','default'=>'','sort'=>'',);
+    $control['values'][] = array('id' => '', 'label' => '', 'value' => '', 'default' => '', 'sort' => '');
   }
 
   $controls = variable_get('bibdk_search_controls', NULL);
@@ -147,7 +147,7 @@ function bibdk_search_controls_edit_submit($form, &$form_state) {
   $controls[$id] = $control;
 
   if ( $form_state['values']['state'] == 'insert' ) {
-    drupal_set_message(t('The control "@page" have been created.', array('@page'=>$control['title']), array('context' => 'bibdk_search_controls')));
+    drupal_set_message(t('The control "@page" have been created.', array('@page' => $control['title']), array('context' => 'bibdk_search_controls')));
   }
   else {
     drupal_set_message(t('The control have been updated.', array(), array('context' => 'bibdk_search_controls')));
@@ -181,7 +181,7 @@ function bibdk_search_controls_edit_validate($form, &$form_state) {
       }
     }
     if ( $count_defaults > 1 && $form_state['values']['bibdk_search_control']['type'] != 'checkboxes' ) {
-      drupal_set_message(t('There are too many default values. Only the last one will be used.', array(), array('context' => 'bibdk_search_controls')),'warning');
+      drupal_set_message(t('There are too many default values. Only the last one will be used.', array(), array('context' => 'bibdk_search_controls')), 'warning');
     }
   }
   return $form;
@@ -246,7 +246,7 @@ function bibdk_search_controls_delete_submit($form, &$form_state) {
 /**
  * Edit search control form
  */
-function _bibdk_search_controls_edit_form($element,$state) {
+function _bibdk_search_controls_edit_form($element, $state) {
 
   drupal_add_css(drupal_get_path('module', 'bibdk_search_controls') . '/css/bibdk_search_controls.css');
 
@@ -335,8 +335,8 @@ function _bibdk_search_controls_edit_form($element,$state) {
   if ( isset($element['values']) ) {
     foreach ($element['values'] as $key => $value) {
       $form['bibdk_search_control_values'][$key] = array(
-        '#title'          => $value['label'],
-        '#weight'         => $value['sort'],
+        '#title'          => check_plain($value['label']),
+        '#weight'         => check_plain($value['sort']),
       );
       $form['bibdk_search_control_values'][$key]['label'] = array(
         '#type'           => 'textfield',
