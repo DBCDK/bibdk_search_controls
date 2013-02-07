@@ -3,4 +3,5 @@ description = Add sort and size options to search
 core = 7.x
 package = "Bibliotek.dk"
 files[] = bibdk_search_controls.admin.inc
+files[] = test/bibdk_search_controls.test
 configure = admin/config/search/bibdk_search_controls

@@ -455,7 +455,9 @@ function bibdk_search_controls_delete_value_submit($form, &$form_state) {
 
 
 
-// Comparison function
+/*
+ * Comparison function for control values.
+ */
 function _bibdk_search_controls_values_cmp($a, $b) {
     if ($a['sort'] == $b['sort']) {
         return 0;
