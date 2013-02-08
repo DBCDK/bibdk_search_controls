@@ -51,7 +51,12 @@ function bibdk_search_controls_form_search_block_form_alter(&$form, &$form_state
     }
     if (  $controls[$key]['type'] == 'checkboxes' ) {
         $default_value = check_plain(implode('|', $default_values));
-        $default_value = ( isset($_GET[$name]) ) ? check_plain(implode('|', $_GET[$name])) : $default_value;
+        if ( isset($_GET[$name]) ) {
+          foreach ( $_GET[$name] as $key => $val ) {
+            $get_values[] = check_plain($val);
+          }
+          $default_value = implode('|', $get_values);
+        }
     }
     else {
         $default_value = check_plain(implode('', $default_values));
@@ -153,6 +158,10 @@ function bibdk_search_controls_form($form, &$form_state, $key) {
         '#default_value'  => $default_value,
         '#title'          => t($controls[$key]['label'], array(), array('context' => 'bibdk_search_controls')),
         '#description'    => t($controls[$key]['description'], array(), array('context' => 'bibdk_search_controls')),
+        '#attributes'     => array(
+          'accesskey' => array($controls[$key]['access_key']),
+          'tabindex' => array($controls[$key]['tab_index']),
+        )
       );
       $form['#attached']['js'] = array(
         drupal_get_path('module', 'bibdk_search_controls') . '/js/bibdk_search_controls.js',

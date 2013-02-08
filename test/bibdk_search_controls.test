@@ -106,6 +106,14 @@ class SearchControlsRequestTestCase extends DrupalUnitTestCase {
                 '#default_value' => 'select_option_value_0',
                 '#title' => 'select_label',
                 '#description' => 'select_description',
+                '#attributes' => array(
+                        'tabindex' => array(
+                                '0' => '10',
+                            ),
+                        'accesskey' => array(
+                                '0' => 's',
+                            ),
+                    ),
             ),
         '#attached' => array(
                 'js' => array(
@@ -142,6 +150,14 @@ class SearchControlsRequestTestCase extends DrupalUnitTestCase {
                 '#default_value' => 'radios_option_value_0',
                 '#title' => 'radios_label',
                 '#description' => 'radios_description',
+                '#attributes' => array(
+                        'tabindex' => array(
+                                '0' => '20',
+                            ),
+                        'accesskey' => array(
+                                '0' => 'r',
+                            ),
+                    ),
             ),
         '#attached' => array(
                 'js' => array(
@@ -180,6 +196,14 @@ class SearchControlsRequestTestCase extends DrupalUnitTestCase {
                     ),
                 '#title' => 'checkboxes_label',
                 '#description' => 'checkboxes_description',
+                '#attributes' => array(
+                        'tabindex' => array(
+                                '0' => '30',
+                            ),
+                        'accesskey' => array(
+                                '0' => 'c',
+                            ),
+                    ),
             ),
         '#attached' => array(
                 'js' => array(
