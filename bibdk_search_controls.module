@@ -168,7 +168,7 @@ function bibdk_search_controls_form($form, &$form_state, $key) {
       );
       $form['#attributes'] = array(
         'class' => array('bibdk-search-controls-form'),
-        'data'  => array('controls_search_' . $name),
+        'data-control-name'  => array('controls_search_' . $name),
       );
       $form['#theme'] = 'bibdk_search_controls-' . $controls[$key]['type'];
     }

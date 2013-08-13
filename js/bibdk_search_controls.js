@@ -4,7 +4,7 @@
     attach: function(context, settings) {
       $('.bibdk-search-controls-form').change(function() {
         var value = "";
-        var idHidden = $(this).attr('data');
+        var idHidden = $(this).attr('data-control-name');
 
         if ( selectValue = $(this).find(".form-type-select select").val() )  {
           value = selectValue;
