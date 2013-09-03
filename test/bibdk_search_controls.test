@@ -16,7 +16,8 @@ class SearchControlsRequestTestCase extends DrupalUnitTestCase {
   }
 
   public function setUp() {
-    $this->profile = 'minimum';
+    module_load_include('module', 'bibdk_search_controls', 'bibdk_search_controls');
+    $this->profile = 'bibdk';
     parent::setUp(array('bibdk_search_controls'));
   }
 
@@ -95,40 +96,50 @@ class SearchControlsRequestTestCase extends DrupalUnitTestCase {
 
     $_bibdk_search_controls_unit_test_case = TRUE;
 
-    $form_out_select = array(
-        'select_name' => array(
-                '#type' => 'select',
-                '#options' => array(
-                        'select_option_value_0' => 'select_option_label_0',
-                        'select_option_value_1' => 'select_option_label_1',
-                        'select_option_value_2' => 'select_option_label_2',
-                    ),
-                '#default_value' => 'select_option_value_0',
-                '#title' => 'select_label',
-                '#description' => 'select_description',
-                '#attributes' => array(
-                        'tabindex' => array(
-                                '0' => '10',
-                            ),
-                        'accesskey' => array(
-                                '0' => 's',
-                            ),
-                    ),
-            ),
-        '#attached' => array(
-                'js' => array(
-                        '0' => 'profiles/bibdk/modules/bibdk_search_controls/js/bibdk_search_controls.js',
-                    ),
-            ),
-        '#attributes' => array(
-                'class' => array(
-                        '0' => 'bibdk-search-controls-form',
-                    ),
-                'data' => array(
-                        '0' => 'controls_search_select_name',
-                    ),
-            ),
-        '#theme' => 'bibdk_search_controls-select',
+    $form_out_select = array (
+      'select_name' =>
+      array (
+        '#type' => 'select',
+        '#options' =>
+        array (
+          'select_option_value_0' => 'select_option_label_0',
+          'select_option_value_1' => 'select_option_label_1',
+          'select_option_value_2' => 'select_option_label_2',
+        ),
+        '#default_value' => 'select_option_value_0',
+        '#title' => 'select_label',
+        '#description' => 'select_description',
+        '#attributes' =>
+        array (
+          'accesskey' =>
+          array (
+            0 => 's',
+          ),
+          'tabindex' =>
+          array (
+            0 => '10',
+          ),
+        ),
+      ),
+      '#attached' =>
+      array (
+        'js' =>
+        array (
+          0 => 'sites/default/modules/bibdk_search_controls/js/bibdk_search_controls.js',
+        ),
+      ),
+      '#attributes' =>
+      array (
+        'class' =>
+        array (
+          0 => 'bibdk-search-controls-form',
+        ),
+        'data-control-name' =>
+        array (
+          0 => 'controls_search_select_name',
+        ),
+      ),
+      '#theme' => 'bibdk_search_controls-select',
     );
 
     $form = $form_state = array();
@@ -139,40 +150,50 @@ class SearchControlsRequestTestCase extends DrupalUnitTestCase {
     $this->assertTrue($result, $message);
 
 
-    $form_out_select = array(
-        'radios_name' => array(
-                '#type' => 'radios',
-                '#options' => array(
-                        'radios_option_value_0' => 'radios_option_label_0',
-                        'radios_option_value_1' => 'radios_option_label_1',
-                        'radios_option_value_2' => 'radios_option_label_2',
-                    ),
-                '#default_value' => 'radios_option_value_0',
-                '#title' => 'radios_label',
-                '#description' => 'radios_description',
-                '#attributes' => array(
-                        'tabindex' => array(
-                                '0' => '20',
-                            ),
-                        'accesskey' => array(
-                                '0' => 'r',
-                            ),
-                    ),
-            ),
-        '#attached' => array(
-                'js' => array(
-                        '0' => 'profiles/bibdk/modules/bibdk_search_controls/js/bibdk_search_controls.js',
-                    ),
-            ),
-        '#attributes' => array(
-                'class' => array(
-                        '0' => 'bibdk-search-controls-form',
-                    ),
-                'data' => array(
-                        '0' => 'controls_search_radios_name',
-                    ),
-            ),
-        '#theme' => 'bibdk_search_controls-radios',
+    $form_out_select = array (
+      'radios_name' =>
+      array (
+        '#type' => 'radios',
+        '#options' =>
+        array (
+          'radios_option_value_0' => 'radios_option_label_0',
+          'radios_option_value_1' => 'radios_option_label_1',
+          'radios_option_value_2' => 'radios_option_label_2',
+        ),
+        '#default_value' => 'radios_option_value_0',
+        '#title' => 'radios_label',
+        '#description' => 'radios_description',
+        '#attributes' =>
+        array (
+          'accesskey' =>
+          array (
+            0 => 'r',
+          ),
+          'tabindex' =>
+          array (
+            0 => '20',
+          ),
+        ),
+      ),
+      '#attached' =>
+      array (
+        'js' =>
+        array (
+          0 => 'sites/default/modules/bibdk_search_controls/js/bibdk_search_controls.js',
+        ),
+      ),
+      '#attributes' =>
+      array (
+        'class' =>
+        array (
+          0 => 'bibdk-search-controls-form',
+        ),
+        'data-control-name' =>
+        array (
+          0 => 'controls_search_radios_name',
+        ),
+      ),
+      '#theme' => 'bibdk_search_controls-radios',
     );
 
     $form = $form_state = array();
@@ -183,42 +204,53 @@ class SearchControlsRequestTestCase extends DrupalUnitTestCase {
     $this->assertTrue($result, $message);
 
 
-    $form_out_select = array(
-        'checkboxes_name' => array(
-                '#type' => 'checkboxes',
-                '#options' => array(
-                        'checkboxes_option_value_0' => 'checkboxes_option_label_0',
-                        'checkboxes_option_value_1' => 'checkboxes_option_label_1',
-                        'checkboxes_option_value_2' => 'checkboxes_option_label_2',
-                    ),
-                '#default_value' => array(
-                        '5' => 'checkboxes_option_value_0',
-                    ),
-                '#title' => 'checkboxes_label',
-                '#description' => 'checkboxes_description',
-                '#attributes' => array(
-                        'tabindex' => array(
-                                '0' => '30',
-                            ),
-                        'accesskey' => array(
-                                '0' => 'c',
-                            ),
-                    ),
-            ),
-        '#attached' => array(
-                'js' => array(
-                        '0' => 'profiles/bibdk/modules/bibdk_search_controls/js/bibdk_search_controls.js',
-                    ),
-            ),
-        '#attributes' => array(
-                'class' => array(
-                        '0' => 'bibdk-search-controls-form',
-                    ),
-                'data' => array(
-                        '0' => 'controls_search_checkboxes_name',
-                    ),
-            ),
-        '#theme' => 'bibdk_search_controls-checkboxes',
+    $form_out_select = array (
+      'checkboxes_name' =>
+      array (
+        '#type' => 'checkboxes',
+        '#options' =>
+        array (
+          'checkboxes_option_value_0' => 'checkboxes_option_label_0',
+          'checkboxes_option_value_1' => 'checkboxes_option_label_1',
+          'checkboxes_option_value_2' => 'checkboxes_option_label_2',
+        ),
+        '#default_value' =>
+        array (
+          5 => 'checkboxes_option_value_0',
+        ),
+        '#title' => 'checkboxes_label',
+        '#description' => 'checkboxes_description',
+        '#attributes' =>
+        array (
+          'accesskey' =>
+          array (
+            0 => 'c',
+          ),
+          'tabindex' =>
+          array (
+            0 => '30',
+          ),
+        ),
+      ),
+      '#attached' =>
+      array (
+        'js' =>
+        array (
+          0 => 'sites/default/modules/bibdk_search_controls/js/bibdk_search_controls.js',
+        ),
+      ),
+      '#attributes' =>
+      array (
+        'class' =>
+        array (
+          0 => 'bibdk-search-controls-form',
+        ),
+        'data-control-name' =>
+        array (
+          0 => 'controls_search_checkboxes_name',
+        ),
+      ),
+      '#theme' => 'bibdk_search_controls-checkboxes',
     );
 
     $form = $form_state = array();
