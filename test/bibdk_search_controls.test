@@ -16,7 +16,8 @@ class SearchControlsRequestTestCase extends DrupalUnitTestCase {
   }
 
   public function setUp() {
-    $this->profile = 'minimum';
+    module_load_include('module', 'bibdk_search_controls', 'bibdk_search_controls');
+    $this->profile = 'bibdk';
     parent::setUp(array('bibdk_search_controls'));
   }
 
