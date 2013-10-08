@@ -187,7 +187,6 @@ function bibdk_search_controls_ting_search_get_controls($form, $form_state) {
   $bibdk_search_controls = _bibdk_search_controls_variable_get();
 
   foreach ($bibdk_search_controls as $key => $control) {
-    $name = $control['name'];
     $s = (isset($form_state['values'][$control['name']])) ? $form_state['values'][$control['name']] : '';
     if ($control['type'] == 'checkboxes') {
       $s = explode('|', $s);
