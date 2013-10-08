@@ -44,7 +44,6 @@ function bibdk_search_controls_form_search_block_form_alter(&$form, &$form_state
   $controls = _bibdk_search_controls_variable_get();
   foreach ($controls as $key => $control) {
     $name = $control['name'];
-    $default_value = '';
     $default_values = array();
     foreach ($controls[$key]['values'] as $n => $value) {
       $default_values[] = ($value['default']) ? $value['value'] : NULL;
