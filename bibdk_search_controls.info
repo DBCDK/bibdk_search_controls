@@ -2,7 +2,9 @@ name = Bibliotek.dk - Search controls
 description = Add sort and size options to search
 core = 7.x
 package = Bibliotek.dk
-version = 7.x-0.3
+version = 7.x-0.4
+
 files[] = bibdk_search_controls.admin.inc
 files[] = test/bibdk_search_controls.test
+
 configure = admin/config/search/bibdk_search_controls
