@@ -279,13 +279,11 @@ class SearchControlsRequestTestCase extends DrupalUnitTestCase {
             ),
     );
 
-    $form = array();
-    $form_state = array();
-    $form_state['values']['select_name'] = 'select_option_value_0';
-    $form_state['values']['radios_name'] = 'radios_option_value_0';
-    $form_state['values']['checkboxes_name'] = 'checkboxes_option_value_0||';
+    $values['select_name'] = 'select_option_value_0';
+    $values['radios_name'] = 'radios_option_value_0';
+    $values['checkboxes_name'] = 'checkboxes_option_value_0||';
 
-    $controls = bibdk_search_controls_ting_search_get_controls($form, $form_state);
+    $controls = bibdk_search_controls_ting_search_get_controls($values);
 
     $result = ( $controls == $controls_out );
     $message = 'bibdk_search_controls_ting_search_get_controls is formatted correctly.';

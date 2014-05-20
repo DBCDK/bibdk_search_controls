@@ -180,14 +180,14 @@ function bibdk_search_controls_form($form, &$form_state, $key) {
 /**
  * Implements hook_ting_search_get_controls().
  */
-function bibdk_search_controls_ting_search_get_controls($form, $form_state) {
+function bibdk_search_controls_ting_search_get_controls($values) {
 
   $controls = array();
 
   $bibdk_search_controls = _bibdk_search_controls_variable_get();
 
   foreach ($bibdk_search_controls as $key => $control) {
-    $s = (isset($form_state['values'][$control['name']])) ? $form_state['values'][$control['name']] : '';
+    $s = (isset($values[$control['name']])) ? $values[$control['name']] : '';
     if ($control['type'] == 'checkboxes') {
       $s = explode('|', $s);
       foreach ($s as $key => $val) {
