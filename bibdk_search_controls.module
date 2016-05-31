@@ -5,7 +5,7 @@
  */
 function bibdk_search_controls_menu() {
   $items['admin/config/search/bibdk_search_controls'] = array(
-    'title' => 'Bibliotek.dk search controls',
+    'title' => 'Search controls',
     'description' => 'Edit search controls (sort, size, format, etc.).',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('bibdk_search_controls_admin'),
@@ -83,7 +83,7 @@ function bibdk_search_controls_block_info() {
     $title = $control['title'];
     $blocks['search-control-' . $key] = array(
       'title' => '<none>',
-      'info' => t('Bibliotek.dk search control block : ' . $title),
+      'info' => t('Search control block : ' . $title),
       'cache' => DRUPAL_CACHE_GLOBAL,
     );
   }
@@ -99,7 +99,7 @@ function  bibdk_search_controls_block_view($delta = '') {
   $controls = _bibdk_search_controls_variable_get();
   foreach ($controls as $key => $control) {
     if ($delta == 'search-control-' . $key) {
-      $block['subject'] = t('Bibliotek.dk search control : ' . $control['title']);
+      $block['subject'] = t('Search control : ' . $control['title']);
       $block['content'] = drupal_get_form('bibdk_search_controls_form', $key);
       $block['title'] = '<none>';
       return $block;
@@ -161,6 +161,7 @@ function bibdk_search_controls_form($form, &$form_state, $key) {
         '#attributes' => array(
           'accesskey' => array($controls[$key]['access_key']),
           'tabindex' => array($controls[$key]['tab_index']),
+          'class' => array('bibdk-search-control'),
         )
       );
       $form['#attached']['js'] = array(

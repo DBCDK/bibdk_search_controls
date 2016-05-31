@@ -259,7 +259,7 @@ function _bibdk_search_controls_edit_form($element, $state) {
 
   $form['bibdk_search_control'] = array(
     '#type'         => 'fieldset',
-    '#title'        => t('Bibliotek.dk search controls', array(), array('context' => 'bibdk_search_controls')),
+    '#title'        => t('Search controls', array(), array('context' => 'bibdk_search_controls')),
     '#description'  => t('Edit search control configuration.', array(), array('context' => 'bibdk_search_controls')),
     '#tree'         => TRUE,
     '#theme'        => 'bibdk_search_controls-edit-form',
