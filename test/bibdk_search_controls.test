@@ -214,8 +214,6 @@ class SearchControlsRequestTestCase extends DrupalUnitTestCase {
     $result = ( $form == $form_out_select );
     $message = 'bibdk_search_controls_form for radios is formatted correctly.';
     $this->assertTrue($result, $message);
-    $this->assertTrue($result, '<pre>' . print_r($form,1)) . '</pre>';
-    $this->assertTrue($result, '<pre>' . print_r($form_out_select,1)) . '</pre>';
 
 
     $form_out_select = array (
