@@ -3,8 +3,8 @@
 
 simpletest :
 # DrupalUnitTestCase and DrupalWebTestCase
-- name : SearchControlsRequestTestCase
-  path : test/bibdk_search_controls.test
+#- name : SearchControlsRequestTestCase
+#  path : test/bibdk_search_controls.test
 # - name : <test suite>
 #   path :
 #     Path to file, if different from default path, and named different than <test suite>.test
