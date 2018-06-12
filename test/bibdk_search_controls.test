@@ -11,18 +11,18 @@ class SearchControlsRequestTestCase extends DrupalUnitTestCase {
     return array(
       'name' => t('Bibliotek.dk search controls : Unit tests'),
       'description' => t('Check if parsing search controls return a valid result'),
-      'group' => t('bibliotek.dk'),
+      'group' => t('Netpunkt / Bibliotek.dk'),
     );
   }
 
   public function setUp() {
-    module_load_include('module', 'bibdk_search_controls', 'bibdk_search_controls');
+    module_load_include('module', 'bibdk_search_controls');
     $this->profile = 'bibdk';
     parent::setUp(array('bibdk_search_controls'));
   }
 
   function test_bibdk_search_controls_search_form_alter() {
-    module_load_include('module', 'bibdk_search_controls', 'bibdk_search_controls');
+    module_load_include('module', 'bibdk_search_controls');
     global $_bibdk_search_controls_unit_test_case;
 
     $_bibdk_search_controls_unit_test_case = TRUE;
