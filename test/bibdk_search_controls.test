@@ -11,18 +11,18 @@ class SearchControlsRequestTestCase extends DrupalUnitTestCase {
     return array(
       'name' => t('Bibliotek.dk search controls : Unit tests'),
       'description' => t('Check if parsing search controls return a valid result'),
-      'group' => t('bibliotek.dk'),
+      'group' => t('Netpunkt / Bibliotek.dk'),
     );
   }
 
   public function setUp() {
-    module_load_include('module', 'bibdk_search_controls', 'bibdk_search_controls');
+    module_load_include('module', 'bibdk_search_controls');
     $this->profile = 'bibdk';
     parent::setUp(array('bibdk_search_controls'));
   }
 
   function test_bibdk_search_controls_search_form_alter() {
-    module_load_include('module', 'bibdk_search_controls', 'bibdk_search_controls');
+    module_load_include('module', 'bibdk_search_controls');
     global $_bibdk_search_controls_unit_test_case;
 
     $_bibdk_search_controls_unit_test_case = TRUE;
@@ -69,17 +69,17 @@ class SearchControlsRequestTestCase extends DrupalUnitTestCase {
     $form_out = array(
         'search-control-select_name' => array(
                 'title' => '<none>',
-                'info' => 'Bibliotek.dk search control block : select_title',
+                'info' => 'Search control block : select_title',
                 'cache' => '8',
             ),
         'search-control-radios_name' => array(
                 'title' => '<none>',
-                'info' => 'Bibliotek.dk search control block : radios_title',
+                'info' => 'Search control block : radios_title',
                 'cache' => '8',
             ),
         'search-control-checkboxes_name' => array(
                 'title' => '<none>',
-                'info' => 'Bibliotek.dk search control block : checkboxes_title',
+                'info' => 'Search control block : checkboxes_title',
                 'cache' => '8',
             ),
     );
@@ -120,13 +120,17 @@ class SearchControlsRequestTestCase extends DrupalUnitTestCase {
           array (
             0 => '10',
           ),
+          'class' =>
+          array (
+            0 => 'bibdk-search-control',
+          ),
         ),
       ),
       '#attached' =>
       array (
         'js' =>
         array (
-          0 => 'sites/default/modules/bibdk_search_controls/js/bibdk_search_controls.js',
+          0 => drupal_get_path('module', 'bibdk_search_controls') . '/js/bibdk_search_controls.js',
         ),
       ),
       '#attributes' =>
@@ -153,6 +157,7 @@ class SearchControlsRequestTestCase extends DrupalUnitTestCase {
     $this->assertTrue($result, $message);
 
 
+
     $form_out_select = array (
       'radios_name' =>
       array (
@@ -176,13 +181,17 @@ class SearchControlsRequestTestCase extends DrupalUnitTestCase {
           array (
             0 => '20',
           ),
+          'class' =>
+          array (
+            0 => 'bibdk-search-control',
+          ),
         ),
       ),
       '#attached' =>
       array (
         'js' =>
         array (
-          0 => 'sites/default/modules/bibdk_search_controls/js/bibdk_search_controls.js',
+          0 => drupal_get_path('module', 'bibdk_search_controls') . '/js/bibdk_search_controls.js',
         ),
       ),
       '#attributes' =>
@@ -233,13 +242,17 @@ class SearchControlsRequestTestCase extends DrupalUnitTestCase {
           array (
             0 => '30',
           ),
+          'class' =>
+          array (
+            0 => 'bibdk-search-control',
+          ),
         ),
       ),
       '#attached' =>
       array (
         'js' =>
         array (
-          0 => 'sites/default/modules/bibdk_search_controls/js/bibdk_search_controls.js',
+          0 => drupal_get_path('module', 'bibdk_search_controls') . '/js/bibdk_search_controls.js',
         ),
       ),
       '#attributes' =>
